@@ -52,23 +52,25 @@ function montheme_support (){
 function montheme_register_assets(){
 
     wp_register_script('bootstrap','https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js',[],false,true);
-    wp_register_script('gsap','https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js',[],false,true);
-    wp_register_script('scrolltrigger','https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js',[],false,true);
-    wp_register_script('js', get_template_directory_uri() . '/js/index.js',[],false,true);
+    wp_register_script('gsap',get_template_directory_uri() .'/assets/js/gsap/gsap.min.js',[],false,true);
+    wp_register_script('scrolltrigger',get_template_directory_uri() .'/assets/js/gsap/ScrollTrigger.min.js',[],false,true);
+    wp_register_script('js', get_template_directory_uri() . '/assets/js/index.js',[],false,true);
 
     wp_register_style('bootstrap','https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css',[]);
     wp_register_style('fontawesome','https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');
+    wp_register_style('style', get_template_directory_uri() . '/assets/css/index.css' ,[] );
     // true to put the js in the footer
 
     wp_deregister_script('jquery');
 
-    wp_enqueue_script('js');
     wp_enqueue_script('bootstrap');
     wp_enqueue_script('gsap');
     wp_enqueue_script('scrolltrigger');
+    wp_enqueue_script('js');
 
     wp_enqueue_style('bootstrap');
     wp_enqueue_style('fontawesome');
+    wp_enqueue_style('style');
 }
 
 /* add bar to title parts */
@@ -113,6 +115,16 @@ function my_acf_google_map_api( $api ){
     return $api;
 }
 
+function add_type_attribute($tag, $handle, $src) {
+    // if not your script, do nothing and return original $tag
+    if ( 'js' !== $handle ) {
+        return $tag;
+    }
+    // change the script tag by adding type="module" and return it.
+    $tag = '<script type="module" src="' . esc_url( $src ) . '"></script>';
+    return $tag;
+}
+
 add_action('init','montheme_init');
 add_action('after_setup_theme','montheme_support');
 add_action('wp_enqueue_scripts','montheme_register_assets');
@@ -124,6 +136,7 @@ add_filter('nav_menu_link_attributes','montheme_menu_link_class');
 add_action('admin_menu', 'remove_admin_menus');
 add_filter('upload_mimes', 'wpc_mime_types');
 add_filter('acf/fields/google_map/api', 'my_acf_google_map_api');
+add_filter('script_loader_tag', 'add_type_attribute' , 10, 3);
 
 /* hide acf from admin # */
 // add_filter('acf/settings/show_admin', '__return_false');

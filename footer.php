@@ -1,13 +1,13 @@
 </div>
 
 <?php wp_footer() ?>
-<footer>
+<footer class="bg-dark text-white">
     <hr>
     <div class="container">
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus eius excepturi harum in sint soluta.</p>
     </div>
     <!-- call to put footer.php with index -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand" href="#"><?php bloginfo('name') ?></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,10 +21,6 @@
                     'menu_class' => 'navbar-nav mr-auto'
                 ])
                 ?>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
             </div>
         </div>
     </nav>
