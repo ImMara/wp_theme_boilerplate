@@ -52,13 +52,20 @@ function montheme_support (){
 function montheme_register_assets(){
     wp_register_style('bootstrap','https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css',[]);
     wp_register_script('bootstrap','https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js',[],false,true);
+    wp_register_script('gsap','https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js',[],false,true);
+    wp_register_script('scrolltrigger','https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js',[],false,true);
+    wp_register_style('fontawesome','https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');
     wp_register_script('js', get_template_directory_uri() . '/js/index.js',[],false,true);
     // true to put the js in the footer
     wp_deregister_script('jquery');
 
-    wp_enqueue_script('bootstrap');
-    wp_enqueue_style('bootstrap');
     wp_enqueue_script('js');
+    wp_enqueue_script('bootstrap');
+    wp_enqueue_script('gsap');
+    wp_enqueue_script('scrolltrigger');
+
+    wp_enqueue_style('bootstrap');
+    wp_enqueue_style('fontawesome');
 }
 
 /* add bar to title parts */

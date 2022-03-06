@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="391ab673-258e-4c04-bbd7-3548073cbf3c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/plugins/.gitkeep" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/plugins/acf-theme-code-pro-v2.5.3.zip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/plugins/advanced-custom-fields-pro.zip" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/functions.php" afterDir="false" />
     </list>
@@ -50,7 +47,7 @@
       <option name="presentableId" value="Default" />
       <updated>1646515264798</updated>
       <workItem from="1646515266018" duration="11945000" />
-      <workItem from="1646557504819" duration="8565000" />
+      <workItem from="1646557504819" duration="10724000" />
     </task>
     <servers />
   </component>
