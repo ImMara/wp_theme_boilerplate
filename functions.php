@@ -18,7 +18,7 @@ function montheme_init(){
 
     }
 
-    register_taxonomy('customtaxonomy','post',[
+    register_taxonomy('customtaxonomy','custompost',[
         'labels'=>[
             'name' => 'custom taxonomy',
         ],

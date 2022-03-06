@@ -27,5 +27,6 @@
         <?= get_search_form() ?>
     </div>
 </nav>
+<progress max="100" value="0"></progress>
 
 <div class="container-fluid">
