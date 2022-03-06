@@ -2,6 +2,22 @@
 
 // register taxonomy and post type
 function montheme_init(){
+
+    if (function_exists('acf_add_options_page')) {
+
+        acf_add_options_page(array(
+            'page_title' => 'Header | Footer',
+            'menu_title' => 'Header | Footer',
+            'menu_slug' => 'Header-Footer',
+            'parent_slug' => '',
+            'capability' => 'edit_posts',
+            'position' => 10,
+            'icon_url' => false,
+            'redirect' => false
+        ));
+
+    }
+
     register_taxonomy('customtaxonomy','post',[
         'labels'=>[
             'name' => 'custom taxonomy',
@@ -82,21 +98,6 @@ function wpc_mime_types($mimes) {
     return $mimes;
 }
 
-if (function_exists('acf_add_options_page')) {
-
-    acf_add_options_page(array(
-        'page_title' => 'Header | Footer',
-        'menu_title' => 'Header | Footer',
-        'menu_slug' => 'Header-Footer',
-        'parent_slug' => '',
-        'capability' => 'edit_posts',
-        'position' => 10,
-        'icon_url' => false,
-        'redirect' => false
-    ));
-
-}
-
 function my_acf_google_map_api( $api ){
     $api['key'] = '';
     return $api;
@@ -105,6 +106,7 @@ function my_acf_google_map_api( $api ){
 add_action('init','montheme_init');
 add_action('after_setup_theme','montheme_support');
 add_action('wp_enqueue_scripts','montheme_register_assets');
+add_filter('use_block_editor_for_post', '__return_false', 10);
 add_filter('document_title_separator','montheme_title_separator');
 add_filter('document_title_parts','montheme_document_title_parts');
 add_filter('nav_menu_css_class','montheme_menu_class');
