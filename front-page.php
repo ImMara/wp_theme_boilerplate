@@ -23,9 +23,22 @@
                         <li>Parts folder for template parts</li>
                     </ul>
                 </div>
+                <?php
+                    // simple example to force query to return null when id is missing
+                     //$id = [];
+                    $id = [5];
+                    $args = array(
+                            "post_type" => "custompost",
+                            "post__in"=>empty($id) ? [0] : $id,
+                    );
+                    $the_query = New WP_Query($args);
+                    wp_reset_postdata();
+                    var_dump($the_query);
+                    ?>
             </div>
         </div>
     </div>
 </main>
+
 <!--ref to footer.php-->
 <?php get_footer() ?>
