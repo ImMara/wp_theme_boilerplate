@@ -1,0 +1,10 @@
+#bs-carousel > .carousel-nav-icon {
+    height: 48px;
+    width: 48px;
+}
+#bs-carousel > .carousel-item.col, .col-sm, .col-md  {
+    margin: 8px;
+    height: 300px;
+    background-size: cover;
+    background-position: center center;
+}

@@ -115,15 +115,6 @@ function my_acf_google_map_api( $api ){
     return $api;
 }
 
-function add_type_attribute($tag, $handle, $src) {
-    // if not your script, do nothing and return original $tag
-    if ( 'js' !== $handle ) {
-        return $tag;
-    }
-    // change the script tag by adding type="module" and return it.
-    $tag = '<script type="module" src="' . esc_url( $src ) . '"></script>';
-    return $tag;
-}
 
 add_action('init','montheme_init');
 add_action('after_setup_theme','montheme_support');
@@ -136,7 +127,6 @@ add_filter('nav_menu_link_attributes','montheme_menu_link_class',10,3);
 add_action('admin_menu', 'remove_admin_menus');
 add_filter('upload_mimes', 'wpc_mime_types');
 add_filter('acf/fields/google_map/api', 'my_acf_google_map_api');
-add_filter('script_loader_tag', 'add_type_attribute' , 10, 3);
 
 /* hide acf from admin # */
 // add_filter('acf/settings/show_admin', '__return_false');

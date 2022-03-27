@@ -9,7 +9,7 @@
     <!--  wp_head adds dynamics features of wordpress and functions  -->
 </head>
 <body>
-<nav id="navbar" class="w-100 position-fixed">
+<nav id="navbar" class="w-100 position-fixed z-index-auto">
     <div class="navbar w-100 navbar-expand-lg p-4 navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand" href="/"><?php bloginfo('name') ?></a>

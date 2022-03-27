@@ -1,8 +1,8 @@
 <!--ref to header.php-->
 <?php get_header() ?>
 <main class="min-vh-100">
-    <div class="row">
-        <div class="col-12 bg-red">
+    <div class="row justify-content-center">
+        <div class="col-10">
             <div class="container">
                 <div class="py-5">
                     <h1><strong>This is a light wordpress theme boilerplate</strong></h1>
@@ -23,19 +23,22 @@
                         <li>Parts folder for template parts</li>
                     </ul>
                 </div>
-                <?php
-                // simple example to force query to return null when id is missing
-                     //$id = [];
-                    $id = [5];
-                    $args = array(
-                            "post_type" => "custompost",
-                            "post__in"=>empty($id) ? [0] : $id,
-                    );
-                    $the_query = New WP_Query($args);
-                    wp_reset_postdata();
-                    // var_dump($the_query);
-                    ?>
             </div>
+        </div>
+        <div class="container">
+            <?php
+            // simple example to force query to return null when id is missing
+            //$id = [];
+            $id = [5];
+            $args = array(
+                "post_type" => "custompost",
+                "post__in"=>empty($id) ? [0] : $id,
+            );
+            $the_query = New WP_Query($args);
+            wp_reset_postdata();
+            // var_dump($the_query);
+            get_template_part('parts/bs-carousel');
+            ?>
         </div>
     </div>
 </main>
