@@ -4,6 +4,8 @@
     <list default="true" id="391ab673-258e-4c04-bbd7-3548073cbf3c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front-page.php" beforeDir="false" afterPath="$PROJECT_DIR$/front-page.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/functions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/header.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +24,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="25z1n8nlSztzoErYFsOviJgfVZY" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -61,6 +66,7 @@
       <workItem from="1646515266018" duration="11945000" />
       <workItem from="1646557504819" duration="12913000" />
       <workItem from="1646589679513" duration="5525000" />
+      <workItem from="1648373809129" duration="4491000" />
     </task>
     <servers />
   </component>

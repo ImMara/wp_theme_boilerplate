@@ -24,7 +24,7 @@
                     </ul>
                 </div>
                 <?php
-                    // simple example to force query to return null when id is missing
+                // simple example to force query to return null when id is missing
                      //$id = [];
                     $id = [5];
                     $args = array(
@@ -33,7 +33,7 @@
                     );
                     $the_query = New WP_Query($args);
                     wp_reset_postdata();
-                    var_dump($the_query);
+                    // var_dump($the_query);
                     ?>
             </div>
         </div>

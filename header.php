@@ -21,7 +21,7 @@
                 wp_nav_menu([
                     'theme_location' => 'header',
                     'container' => false,
-                    'menu_class' => 'navbar-nav mr-auto'
+                    'menu_class' =>'navbar-nav mr-auto',
                 ])
                 ?>
                 <div class="ms-auto"><?= get_search_form() ?></div>
