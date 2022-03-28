@@ -30,10 +30,8 @@
             // simple example to force query to return null when id is missing
             $id = [];
             $ids = $_GET['ID'];
-            var_dump($ids);
             if(isset($id)){
                 array_push($id , $ids);
-                var_dump($id);
             }
             $args = array(
                 "post_type" => "custompost",
@@ -41,7 +39,7 @@
             );
             $the_query = New WP_Query($args);
             wp_reset_postdata();
-            var_dump($the_query);
+            //var_dump($the_query);
             get_template_part('parts/bs-carousel');
             ?>
         </div>
