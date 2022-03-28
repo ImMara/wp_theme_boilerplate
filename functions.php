@@ -175,21 +175,35 @@ function func_export_all_posts() {
     }
 }
 
+function montheme_admin_menu (){
+    add_menu_page(
+            'Options theme',// TITLE OF MY PAGE
+            'Options',// TITLE IN ADMIN MENU
+            'administrator',// ROLE THAT CAN SEE THE PAGE
+            'options-page',// UNIQUE ID FOR THE PAGE
+            'montheme_settings_page'//FUNCTION TO RENDER THE PAGE
+    );
+}
+function montheme_settings_page () {
+
+}
+
 
 add_action('init','montheme_init');
 add_action('after_setup_theme','montheme_support');
 add_action('wp_enqueue_scripts','montheme_register_assets');
-add_filter('use_block_editor_for_post', '__return_false', 10);
+add_filter('use_block_editor_for_post','__return_false',10);
 add_filter('document_title_separator','montheme_title_separator');
 add_filter('document_title_parts','montheme_document_title_parts');
 add_filter('nav_menu_css_class','montheme_menu_class',10,3);
 add_filter('nav_menu_link_attributes','montheme_menu_link_class',10,3);
-add_action('admin_menu', 'remove_admin_menus');
-add_filter('upload_mimes', 'wpc_mime_types');
-add_filter('acf/fields/google_map/api', 'my_acf_google_map_api');
+add_action('admin_menu','remove_admin_menus');
+add_filter('upload_mimes','wpc_mime_types');
+add_filter('acf/fields/google_map/api','my_acf_google_map_api');
 add_action('manage_posts_extra_tablenav','admin_post_list_export_button');
-add_action( 'init', 'func_export_all_posts' );
-add_action( 'show_admin_bar','__return_false');
+add_action('init','func_export_all_posts');
+add_action('show_admin_bar','__return_false');
+add_action('admin_menu','montheme_admin_menu');
 
 /* hide acf from admin # */
 // add_filter('acf/settings/show_admin', '__return_false');
