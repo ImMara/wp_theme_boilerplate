@@ -51,12 +51,12 @@ function montheme_support (){
 // register scripts and css
 function montheme_register_assets(){
 
-    wp_register_script('bootstrap','https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js',[],false,true);
+    wp_register_script('bootstrap',get_template_directory_uri() . '/assets/js/bootstrap/bootstrap.bundle.min.js',[],false,true);
     wp_register_script('gsap',get_template_directory_uri() .'/assets/js/gsap/gsap.min.js',[],false,true);
     wp_register_script('scrolltrigger',get_template_directory_uri() .'/assets/js/gsap/ScrollTrigger.min.js',[],false,true);
     wp_register_script('js', get_template_directory_uri() . '/assets/js/index.js',[],false,true);
 
-    wp_register_style('bootstrap','https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css',[]);
+    wp_register_style('bootstrap',get_template_directory_uri() . '/assets/css/bootstrap/bootstrap.min.css',[]);
     wp_register_style('fontawesome','https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');
     wp_register_style('style', get_template_directory_uri() . '/assets/css/index.css' ,[] );
     // true to put the js in the footer
@@ -115,6 +115,66 @@ function my_acf_google_map_api( $api ){
     return $api;
 }
 
+// ADDING BUTTON TO EXPORT
+function admin_post_list_export_button($wich){
+    global $typenow;
+
+    if( 'custompost' === $typenow && 'top' === $wich ){
+        ?>
+        <input type="submit" name="export_all_posts" class="button button-primary" value="<?php _e('Export All Posts'); ?>" />
+        <?php
+    }
+}
+
+// EXPORT FUNCTION CSV
+function func_export_all_posts() {
+    if(isset($_GET['export_all_posts'])) {
+        $arg = array(
+            'post_type' => 'post',
+            'post_status' => 'publish',
+            'posts_per_page' => -1,
+        );
+
+        global $post;
+        $arr_post = get_posts($arg);
+        if ($arr_post) {
+
+            header('Content-type: text/csv');
+            header('Content-Disposition: attachment; filename="wp-posts.csv"');
+            header('Pragma: no-cache');
+            header('Expires: 0');
+
+            $file = fopen('php://output', 'w');
+
+            fputcsv($file, array('Post Title', 'URL', 'Categories', 'Tags'));
+
+            foreach ($arr_post as $post) {
+                setup_postdata($post);
+
+                $categories = get_the_category();
+                $cats = array();
+                if (!empty($categories)) {
+                    foreach ( $categories as $category ) {
+                        $cats[] = $category->name;
+                    }
+                }
+
+                $post_tags = get_the_tags();
+                $tags = array();
+                if (!empty($post_tags)) {
+                    foreach ($post_tags as $tag) {
+                        $tags[] = $tag->name;
+                    }
+                }
+
+                fputcsv($file, array(get_the_title(), get_the_permalink(), implode(",", $cats), implode(",", $tags)));
+            }
+
+            exit();
+        }
+    }
+}
+
 
 add_action('init','montheme_init');
 add_action('after_setup_theme','montheme_support');
@@ -124,9 +184,13 @@ add_filter('document_title_separator','montheme_title_separator');
 add_filter('document_title_parts','montheme_document_title_parts');
 add_filter('nav_menu_css_class','montheme_menu_class',10,3);
 add_filter('nav_menu_link_attributes','montheme_menu_link_class',10,3);
+// not working
 add_action('admin_menu', 'remove_admin_menus');
+// end
 add_filter('upload_mimes', 'wpc_mime_types');
 add_filter('acf/fields/google_map/api', 'my_acf_google_map_api');
+add_action('manage_posts_extra_tablenav','admin_post_list_export_button');
+add_action( 'init', 'func_export_all_posts' );
 
 /* hide acf from admin # */
 // add_filter('acf/settings/show_admin', '__return_false');

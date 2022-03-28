@@ -18,15 +18,16 @@
 
         $user_verify = wp_signon($login_data,false);
 
+        $errorMessage = "Votre E-mail/username ou votre mot de pass est incorrect";
+
         if( is_wp_error($user_verify))
         {
-            header('Location: '. home_url() . "/test/");
+           header('Location: '. home_url() . "/test/?message=". $errorMessage);
         }else{
             echo "<script type='text/javascript'>window.location='". home_url() ."'</script>";
             exit();
         }
     }
-
 ?>
 <html lang="en">
 <head>
@@ -47,6 +48,15 @@
             <div class="row w-100 gx-0 gy-0 justify-content-center">
                 <form action="<?php echo home_url(); ?>/test/" method="post" class="col-10 bg-light shadow-lg p-5 border border-danger rounded">
                     <h1>Login</h1>
+                    <?php
+                        if($_GET["message"]):
+                        ?>
+                            <div class="alert alert-danger">
+                                <?= $_GET["message"] ?>
+                            </div>
+                    <?php
+                        endif;
+                    ?>
                     <div class="input-group row gy-0 gx-0 mb-3 w-100">
                         <div class="col-4 text-center  input-group-text" id="<?= __('user_login') ; ?>">Email/Username</div>
                         <input type="text" id="<?= __('user_login') ; ?>" name="username" class="col-8 form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" required>
